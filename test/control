@@ -1,0 +1,9 @@
+Package: com.whomer.HelloWorld
+Name: Hello World
+Depends: firmware (>= 5.0)
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome widget for the notification center!
+Maintainer: Will Homer
+Author: Will Homer
+Section: Widgets

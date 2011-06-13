@@ -1,0 +1,9 @@
+Package: com.whomer.CustomWidgetIcons
+Name: Custom Widget Icons
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Allows notification widgets to have their own custom icon on the notification settings table.
+Maintainer: Will Homer
+Author: Will Homer
+Section: Tweaks
