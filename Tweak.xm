@@ -24,7 +24,7 @@
     PSSpecifier *specifier = %orig;
     
     NSDictionary *infoPlist = [NSDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"%@/Info.plist", section.pathToWeeAppPluginBundle]];
-    UIImage *icon = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", section.pathToWeeAppPluginBundle, [infoPlist objectForKey:@"IconFile"]]];
+    UIImage *icon = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", section.pathToWeeAppPluginBundle, [infoPlist objectForKey:@"CFBundleIconFile"]]];
     [specifier setCustomIconImage:icon];
     
     return specifier;
