@@ -14,6 +14,8 @@
 
 @end
 
+%group iOS5Hooks
+
 %hook BulletinBoardController
 
 - (PSSpecifier *)_applicationSpecifierForBBSection:(BBSectionInfo *)section
@@ -46,5 +48,40 @@
     return %orig;
 }
 
-%end
+%end /** BulletinBoardController **/
+
+%end /** iOS5Hooks **/
+
+%group iOS6Hooks
+
+%hook NotificationCell
+
+- (UIImage *)getLazyIcon
+{
+    NSString *imgPath = [[NSBundle bundleWithPath:[self bundlePath]] objectForInfoDictionaryKey:@"CFBundleIconFile"];
+    if (imgPath)
+    {
+        return [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [self bundlePath], imgPath]];
+    }
+    
+    return %orig;
+}
+
+%end /** NotificationCell **/
+
+%end /** iOS6Hooks **/
+
+%ctor
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    NSInteger sysVer = [[[UIDevice currentDevice] systemVersion] intValue];
+    
+    if (sysVer == 5)
+        %init(iOS5Hooks);
+    else
+        %init(iOS6Hooks);
+    
+    [pool drain];
+}
 

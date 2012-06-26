@@ -18,3 +18,7 @@
 - (UIImage *)customIconImage;
 - (void)setCustomIconImage:(UIImage *)image;
 @end
+
+@interface NotificationCell : NSObject
+@property (nonatomic, copy) NSString *bundlePath;
+@end
