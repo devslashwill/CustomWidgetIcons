@@ -84,8 +84,6 @@
         if ([[info sectionID] isEqualToString:@"com.apple.attributionweeapp.bundle"])
             return;
 
-        %log;
-
         NSBundle *widgetBundle = [NSBundle bundleWithPath:[info pathToWeeAppPluginBundle]];
 
         NSString *imgPath = [widgetBundle objectForInfoDictionaryKey:@"CFBundleIconFile"]; 
