@@ -71,6 +71,39 @@
 
 %end /** iOS6Hooks **/
 
+%group iOS7Hooks
+
+%hook SBBulletinListSection
+
+- (void)_updateWithSectionInfo:(BBSectionInfo *)info
+{
+    %orig;
+
+    if ([self isWidgetSection])
+    {
+        if ([[info sectionID] isEqualToString:@"com.apple.attributionweeapp.bundle"])
+            return;
+
+        %log;
+
+        NSBundle *widgetBundle = [NSBundle bundleWithPath:[info pathToWeeAppPluginBundle]];
+
+        NSString *imgPath = [widgetBundle objectForInfoDictionaryKey:@"CFBundleIconFile"]; 
+        if (imgPath != nil)
+            [self setIconImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [widgetBundle bundlePath], imgPath]]];
+
+        NSString *rawDisplayName = [widgetBundle objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+        NSString *localDisplayName = NSLocalizedStringFromTableInBundle(rawDisplayName, @"InfoPlist", widgetBundle, @"");
+
+        if (localDisplayName != nil)
+            [self setDisplayName:localDisplayName];
+    }
+}
+
+%end /** SBBulletinListSection **/
+
+%end /** iOS7Hooks **/
+
 %ctor
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -79,8 +112,10 @@
     
     if (sysVer == 5)
         %init(iOS5Hooks);
-    else
+    else if (sysVer == 6)
         %init(iOS6Hooks);
+    else
+        %init(iOS7Hooks);
     
     [pool drain];
 }

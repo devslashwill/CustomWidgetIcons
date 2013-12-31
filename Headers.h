@@ -7,6 +7,7 @@
 
 @interface BBSectionInfo : NSObject
 @property (nonatomic, copy) NSString *pathToWeeAppPluginBundle;
+@property (nonatomic, copy) NSString *sectionID;
 @end
 
 @interface BulletinBoardController : NSObject
@@ -21,4 +22,10 @@
 
 @interface NotificationCell : NSObject
 @property (nonatomic, copy) NSString *bundlePath;
+@end
+
+@interface SBBulletinListSection : NSObject
+@property(retain, nonatomic) UIImage *iconImage;
+@property(copy, nonatomic) NSString *displayName;
+- (BOOL)isWidgetSection;
 @end

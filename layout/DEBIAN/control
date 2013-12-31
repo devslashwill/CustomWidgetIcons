@@ -1,7 +1,7 @@
 Package: org.thebigboss.customwidgeticons
 Name: CustomWidgetIcons
 Depends: firmware(>=5.0), mobilesubstrate
-Version: 1.1
+Version: 1.2
 Architecture: iphoneos-arm
 Description: icons support for NotificationCenter plugins
 Maintainer: Will Homer
